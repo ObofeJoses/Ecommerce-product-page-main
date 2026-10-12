@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="./style.css">
   
   <title>Frontend Mentor | E-commerce product page</title>
 
@@ -15,8 +16,8 @@
   </style>
 </head>
 <body>
-  <header>
-    <nav>
+  <header class="main-header">
+    <nav class="navigation-bar main-header-nav">
       <ul>
         <li><a href="#">Collections</a></li>
         <li><a href="#">Men</a></li>
@@ -25,32 +26,36 @@
         <li><a href="#">Contact</a></li>
       </ul>
     </nav>
-    <img src="./images/logo.svg" alt="Sneaker Company Logo">
-    <div>
-      <img src="./images/icon-cart.svg" alt="Shopping Cart Icon">
-      <img src="./images/image-avatar.png" alt="User Avatar">
-    
+    <img src="./images/logo.svg" alt="Sneaker Company Logo" class="main-header-logo">
+    <div class="main-header-icons">
+      <img src="./images/icon-cart.svg" alt="Shopping Cart Icon" class="cart-icon">
+      <img src="./images/image-avatar.png" alt="User Avatar" class="user-avatar">
     </div>
   </header>
-  <main>
-    <div>
-      <img src="./images/image-product-1.jpg" alt="Product Image">
-      <button>❮</button>
-      <button>❯</button>
+  <main class="product-page">
+    <div class="product-gallery">
+      <img src="./images/image-product-1.jpg" alt="Product Image" class="product-gallery-image">
+      <button class="gallery-button-prev">❮</button>
+      <button class="gallery-button-next">❯</button>
     </div>
-    <h1>Sneaker Company</h1>
-    <h2>Fall Limited Edition Sneakers</h2>
-    <p>These low-profile sneakers are your perfect casual wear companion. Featuring a 
-    durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
+    <div class="product-info">
+      <h1 class="product-info-brand">Sneaker Company</h1>
+      <h2 class="product-info-ttle">Fall Limited Edition Sneakers</h2>
+      <p class="product-info-description">These low-profile sneakers are your perfect casual wear companion. Featuring a 
+      durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
 
-    <div> <span>$125.00</span> <span class="discount">50%</span>  </div>
-    <span class="original-price">$250.00</span>
-    <div class="quantity">
-      <button>-</button>
-      <span>0</span>
-      <button>+</button>
+      <div class="product-price">
+        <span>$125.00</span>
+        <span class="discount">50%</span>
+      </div>
+      <span class="original-price">$250.00</span>
+      <div class="quantity">
+        <button class="quantity-button-decrement">-</button>
+        <span class="quantity-value">0</span>
+        <button class="quantity-button-increment">+</button>
+      </div>
+      <button class="add-to-cart-button">Add to cart</button>
     </div>
-    <button>Add to cart</button>
 
   </main>
 
