@@ -2,67 +2,175 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="./style.css">
-  
   <title>Frontend Mentor | E-commerce product page</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-    .attribution { font-size: 0.6875rem; text-align: center; }
+    .attribution { font-size: 0.6875rem; text-align: center; margin-top: 40px; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
 </head>
 <body>
+
+  <!-- Backdrop for Mobile Sidebar -->
+  <div class="backdrop hidden" id="backdrop"></div>
+
+  <!-- Header Section -->
   <header class="main-header">
-    <nav class="navigation-bar main-header-nav">
-      <ul>
-        <li><a href="#">Collections</a></li>
-        <li><a href="#">Men</a></li>
-        <li><a href="#">Women</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-    <img src="./images/logo.svg" alt="Sneaker Company Logo" class="main-header-logo">
+    <div class="header-left">
+      <button class="menu-toggle-btn" id="menu-toggle" aria-label="Open Navigation Menu">
+        <img src="./images/icon-menu.svg" alt="">
+      </button>
+
+      <a href="#" class="logo-link">
+        <img src="./images/logo.svg" alt="Sneaker Company Logo" class="main-header-logo">
+      </a>
+
+      <nav class="navigation-bar main-header-nav" id="mobile-nav">
+        <button class="menu-close-btn" id="menu-close" aria-label="Close Navigation Menu">
+          <img src="./images/icon-close.svg" alt="">
+        </button>
+        <ul>
+          <li><a href="#">Collections</a></li>
+          <li><a href="#">Men</a></li>
+          <li><a href="#">Women</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
     <div class="main-header-icons">
-      <img src="./images/icon-cart.svg" alt="Shopping Cart Icon" class="cart-icon">
+      <!-- Cart Container & Dropdown -->
+      <div class="cart-container">
+        <button class="cart-toggle-btn" id="cart-toggle" aria-label="View Cart">
+          <img src="./images/icon-cart.svg" alt="Shopping Cart Icon" class="cart-icon">
+          <span class="cart-badge hidden" id="cart-badge">0</span>
+        </button>
+
+        <div class="cart-dropdown hidden" id="cart-dropdown">
+          <div class="cart-dropdown-header">
+            <h4>Cart</h4>
+          </div>
+          <div class="cart-dropdown-body" id="cart-dropdown-body">
+            <p class="empty-cart-msg">Your cart is empty.</p>
+          </div>
+        </div>
+      </div>
+
       <img src="./images/image-avatar.png" alt="User Avatar" class="user-avatar">
     </div>
   </header>
+
+  <!-- Main Content -->
   <main class="product-page">
-    <div class="product-gallery">
-      <img src="./images/image-product-1.jpg" alt="Product Image" class="product-gallery-image">
-      <button class="gallery-button-prev">❮</button>
-      <button class="gallery-button-next">❯</button>
-    </div>
-    <div class="product-info">
-      <h1 class="product-info-brand">Sneaker Company</h1>
-      <h2 class="product-info-ttle">Fall Limited Edition Sneakers</h2>
-      <p class="product-info-description">These low-profile sneakers are your perfect casual wear companion. Featuring a 
-      durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
-
-      <div class="product-price">
-        <span>$125.00</span>
-        <span class="discount">50%</span>
+    
+    <!-- Gallery Section -->
+    <section class="product-gallery">
+      <div class="main-image-container">
+        <button class="gallery-button gallery-button-prev" id="prev-btn" aria-label="Previous Image">
+          <img src="./images/icon-previous.svg" alt="">
+        </button>
+        <img src="./images/image-product-1.jpg" alt="Fall Limited Edition Sneakers" class="main-product-image" id="main-product-image">
+        <button class="gallery-button gallery-button-next" id="next-btn" aria-label="Next Image">
+          <img src="./images/icon-next.svg" alt="">
+        </button>
       </div>
-      <span class="original-price">$250.00</span>
-      <div class="quantity">
-        <button class="quantity-button-decrement">-</button>
-        <span class="quantity-value">0</span>
-        <button class="quantity-button-increment">+</button>
-      </div>
-      <button class="add-to-cart-button">Add to cart</button>
-    </div>
 
+      <div class="product-gallery-thumbnails">
+        <button class="thumbnail-btn active" data-index="0">
+          <img src="./images/image-product-1-thumbnail.jpg" alt="Product Thumbnail 1" class="product-gallery-thumbnail">
+        </button>
+        <button class="thumbnail-btn" data-index="1">
+          <img src="./images/image-product-2-thumbnail.jpg" alt="Product Thumbnail 2" class="product-gallery-thumbnail">
+        </button>
+        <button class="thumbnail-btn" data-index="2">
+          <img src="./images/image-product-3-thumbnail.jpg" alt="Product Thumbnail 3" class="product-gallery-thumbnail">
+        </button>
+        <button class="thumbnail-btn" data-index="3">
+          <img src="./images/image-product-4-thumbnail.jpg" alt="Product Thumbnail 4" class="product-gallery-thumbnail">
+        </button>
+      </div>
+    </section>
+
+    <!-- Product Info Section -->
+    <section class="product-info">
+      <p class="product-info-brand">SNEAKER COMPANY</p>
+      <h1 class="product-info-title">Fall Limited Edition Sneakers</h1>
+      <p class="product-info-description">
+        These low-profile sneakers are your perfect casual wear companion. Featuring a 
+        durable rubber outer sole, they’ll withstand everything the weather can offer.
+      </p>
+
+      <div class="product-price-block">
+        <div class="price-discount-wrapper">
+          <span class="current-price">$125.00</span>
+          <span class="discount">50%</span>
+        </div>
+        <span class="original-price">$250.00</span>
+      </div>
+
+      <div class="purchase-actions">
+        <div class="quantity-selector">
+          <button class="quantity-button-decrement" id="quantity-decrement" aria-label="Decrease quantity">
+            <img src="./images/icon-minus.svg" alt="-">
+          </button>
+          <span class="quantity-value" id="quantity-value">0</span>
+          <button class="quantity-button-increment" id="quantity-increment" aria-label="Increase quantity">
+            <img src="./images/icon-plus.svg" alt="+">
+          </button>
+        </div>
+
+        <button class="add-to-cart-button" id="add-to-cart-btn">
+          <img src="./images/icon-cart.svg" alt="" class="btn-cart-icon">
+          Add to cart
+        </button>
+      </div>
+    </section>
   </main>
 
-  
+  <!-- Desktop Lightbox Modal -->
+  <div class="lightbox-modal hidden" id="lightbox-modal">
+    <div class="lightbox-content">
+      <button class="lightbox-close-btn" id="lightbox-close" aria-label="Close Lightbox">
+        <svg width="14" height="15" xmlns="http://www.w3.org/2000/svg">
+          <path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill="#FFF" fill-rule="evenodd"/>
+        </svg>
+      </button>
+
+      <div class="lightbox-main-wrapper">
+        <button class="gallery-button gallery-button-prev" id="lightbox-prev" aria-label="Previous Image">
+          <img src="./images/icon-previous.svg" alt="">
+        </button>
+        <img src="./images/image-product-1.jpg" alt="Sneakers Lightbox" id="lightbox-image">
+        <button class="gallery-button gallery-button-next" id="lightbox-next" aria-label="Next Image">
+          <img src="./images/icon-next.svg" alt="">
+        </button>
+      </div>
+
+      <div class="product-gallery-thumbnails lightbox-thumbnails">
+        <button class="thumbnail-btn active" data-index="0">
+          <img src="./images/image-product-1-thumbnail.jpg" alt="Thumbnail 1">
+        </button>
+        <button class="thumbnail-btn" data-index="1">
+          <img src="./images/image-product-2-thumbnail.jpg" alt="Thumbnail 2">
+        </button>
+        <button class="thumbnail-btn" data-index="2">
+          <img src="./images/image-product-3-thumbnail.jpg" alt="Thumbnail 3">
+        </button>
+        <button class="thumbnail-btn" data-index="3">
+          <img src="./images/image-product-4-thumbnail.jpg" alt="Thumbnail 4">
+        </button>
+      </div>
+    </div>
+  </div>
+
   <footer class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank" rel="noopener">Frontend Mentor</a>. 
     Coded by <a href="#">Obofe Joses</a>.
   </footer>
+
+  <script src="./script.js"></script>
 </body>
 </html>
