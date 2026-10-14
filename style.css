@@ -345,3 +345,41 @@ button{
 .btn-cart-icon {
   filter: brightness(0) invert(1);
 }
+
+/* lightbox */
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-lightbox-background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.lightbox-content {
+  width: 450px;
+  position: relative;
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: -2.5rem;
+  right: 0;
+}
+
+.lightbox-close-btn path:hover {
+  fill: var(--color-orange);
+}
+
+.lightbox-main-wrapper {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.lightbox-main-wrapper img {
+  border-radius: 15px;
+}
+
+.lightbox-main-wrapper .gallery-button-prev { left: -20px; }
+.lightbox-main-wrapper .gallery-button-next { right: -20px; }
