@@ -44,47 +44,96 @@ button{
 }
 
 /* -----------------------header------------- */
+/*-- Main Header --*/
 .main-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: var(--color-white);
+  padding: 1.25rem 1.5rem;
 }
-.main-header-logo {
-  width: 150px;
-}
-.main-header-icons {
+
+.header-left {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
-.user-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+
+.menu-toggle-btn {
+  display: block;
 }
 
-
-/* ---------------------------PRODUCT PAGE------------------ */
-
-/* ---Product image galler---- */
-.product-gallery {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
+.menu-close-btn {
+  display: block;
+  margin-bottom: 3rem;
 }
-.gallery-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+
+/* Slide-out Sidebar Drawer */
+.navigation-bar {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 65%;
+  height: 100vh;
   background-color: var(--color-white);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  z-index: 50;
+  padding: 1.5rem;
+  transition: left 0.3s ease;
+}
+
+.navigation-bar.open {
+  left: 0;
+}
+
+.navigation-bar ul {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.navigation-bar a {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-very-dark-blue);
+  font-size: 1.1rem;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-black);
+  opacity: 0.75;
+  z-index: 40;
+}
+
+.main-header-icons {
+  display: flex;
   align-items: center;
-  font-size: 1.5rem;
+  gap: 1.25rem;
+}
+
+.cart-container {
+  position: relative;
+}
+
+.cart-toggle-btn {
+  position: relative;
+  padding: 4px;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  font-size: 0.65rem;
+  font-weight: var(--font-weight-bold);
+  padding: 1px 7px;
+  border-radius: 10px;
+}
+
+.user-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
 }
