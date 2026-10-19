@@ -148,3 +148,59 @@ nextBtn.addEventListener('click', () => {
   const newIndex = (activeImageIndex + 1) % productImages.length;
   setActiveImage(newIndex);
 });
+
+// --- DOM Elements: Lightbox Modal ---
+const lightboxModal = document.getElementById('lightbox-modal');
+const lightboxCloseBtn = document.getElementById('lightbox-close');
+const lightboxImage = document.getElementById('lightbox-image');
+const lightboxPrevBtn = document.getElementById('lightbox-prev');
+const lightboxNextBtn = document.getElementById('lightbox-next');
+const lightboxThumbnailBtns = document.querySelectorAll('.lightbox-thumbnails .thumbnail-btn');
+
+let lightboxIndex = 0;
+
+function updateLightboxImage(index) {
+  lightboxIndex = index;
+  lightboxImage.src = productImages[lightboxIndex];
+
+  lightboxThumbnailBtns.forEach((btn, idx) => {
+    btn.classList.toggle('active', idx === lightboxIndex);
+  });
+}
+
+// Open Lightbox Modal (Desktop Only)
+mainProductImage.addEventListener('click', () => {
+  if (window.innerWidth >= 900) {
+    lightboxModal.classList.remove('hidden');
+    updateLightboxImage(activeImageIndex);
+  }
+});
+
+// Close Lightbox Modal
+lightboxCloseBtn.addEventListener('click', () => {
+  lightboxModal.classList.add('hidden');
+});
+
+lightboxModal.addEventListener('click', (e) => {
+  if (e.target === lightboxModal) {
+    lightboxModal.classList.add('hidden');
+  }
+});
+
+// Lightbox Navigation Controls
+lightboxPrevBtn.addEventListener('click', () => {
+  const newIndex = (lightboxIndex - 1 + productImages.length) % productImages.length;
+  updateLightboxImage(newIndex);
+});
+
+lightboxNextBtn.addEventListener('click', () => {
+  const newIndex = (lightboxIndex + 1) % productImages.length;
+  updateLightboxImage(newIndex);
+});
+
+lightboxThumbnailBtns.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    const index = parseInt(e.currentTarget.dataset.index);
+    updateLightboxImage(index);
+  });
+});
