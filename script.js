@@ -104,3 +104,47 @@ addToCartBtn.addEventListener('click', () => {
   selectedQuantity = 0;
   quantityValueDisplay.textContent = selectedQuantity;
 });
+
+// --- DOM Elements: Product Gallery ---
+const mainProductImage = document.getElementById('main-product-image');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const thumbnailBtns = document.querySelectorAll('.product-gallery .thumbnail-btn');
+
+const productImages = [
+  './images/image-product-1.jpg',
+  './images/image-product-2.jpg',
+  './images/image-product-3.jpg',
+  './images/image-product-4.jpg'
+];
+
+let activeImageIndex = 0;
+
+// --- Update Active Gallery Image ---
+function setActiveImage(index) {
+  activeImageIndex = index;
+  mainProductImage.src = productImages[activeImageIndex];
+
+  thumbnailBtns.forEach((btn, idx) => {
+    btn.classList.toggle('active', idx === activeImageIndex);
+  });
+}
+
+// Thumbnail Click Events
+thumbnailBtns.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    const index = parseInt(e.currentTarget.dataset.index);
+    setActiveImage(index);
+  });
+});
+
+// Mobile Arrow Controls
+prevBtn.addEventListener('click', () => {
+  const newIndex = (activeImageIndex - 1 + productImages.length) % productImages.length;
+  setActiveImage(newIndex);
+});
+
+nextBtn.addEventListener('click', () => {
+  const newIndex = (activeImageIndex + 1) % productImages.length;
+  setActiveImage(newIndex);
+});
